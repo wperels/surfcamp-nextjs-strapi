@@ -1,5 +1,5 @@
 import { use } from "react"
-//import './../scss/main.scss'
+import './../scss/main.scss'
 
 export const metadata = {
   title: 'Create Next App',
