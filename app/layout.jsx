@@ -4,7 +4,7 @@ import Header from './_components/Layout/Header'
 import Footer from './_components/Layout/Footer'
 import HeroSection from './_components/HeroSection'
 import InfoBlock from './_components/InfoBlock'
-
+import '../scss/main.scss';
 
 export const metadata = {
   title: 'Create Next App',
