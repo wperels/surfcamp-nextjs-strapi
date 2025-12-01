@@ -1,1 +1,0 @@
-{"version":3,"sources":["turbopack:///[project]/app/page.js"],"sourcesContent":["\nexport default function Home() {\n  return (\n    <main>\n  <h1>Surfcamp</h1>\n    </main>\n  )\n}\n"],"names":[],"mappings":"0TACe,SAAS,IACtB,MACE,CAAA,EAAA,EAAA,GAAA,EAAC,OAAA,UACH,CAAA,EAAA,EAAA,GAAA,EAAC,KAAA,UAAG,cAGN"}

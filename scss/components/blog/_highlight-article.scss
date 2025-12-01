@@ -1,0 +1,27 @@
+.highlight-article {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 10rem;
+
+  &__info {
+    width: 49%;
+    flex-shrink: 0;
+
+    & .copy {
+      margin-top: 4rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__image {
+    display: block; // Add this to override inline
+    width: 49%;
+    height: auto;
+    border-radius: 4rem;
+    flex-shrink: 0;
+    object-fit: cover; // Helps with image sizing
+  }
+}
