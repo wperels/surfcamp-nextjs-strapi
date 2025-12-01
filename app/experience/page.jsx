@@ -4,6 +4,7 @@ import {fetchDataFromStrapi, processInfoBlocks } from '../../utils/strapi.utils'
 
 
 export default async function Home() {
+
     const data = await fetchDataFromStrapi("Infoblocks-experience2?populate[info_blocks][populate][0]=button&populate[info_blocks][populate][1]=image")
     // (see strapi.utils.js)
     //const responseFetch = await fetch('http://localhost:1337/api/Infoblocks-experience?populate[info_blocks][populate][0]=button&populate[info_blocks][populate][1]=image')
@@ -37,8 +38,9 @@ console.log(infoBlockData)
            imgSrc="/assets/hero-experience.png"
            headline={heroHeadline} 
            theme="orange"/>
-          {infoBlockData.map( (data) => 
-          <InfoBlock key={data.id} data={data}/>)}
+          {infoBlockData.map( (data) => <InfoBlock key={data.id} data={data}/>)}
     </main>
   )
 }
+
+export const revalidate = 300
