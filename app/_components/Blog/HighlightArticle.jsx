@@ -2,7 +2,12 @@ import Link from "next/link";
 //import Image from "next/image";
 
 const HighlightArticle = ( {data} ) => {
+/*    if (!data) {
+    return null; // or return a loading/placeholder component
+  }*/
+
   const { headline, excerpt, slug, featuredImage } = data;  
+ 
   return ( 
 <article className="highlight-article">
     <div className="highlight-article__info">

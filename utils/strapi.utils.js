@@ -30,13 +30,14 @@ export function processInfoBlocks(data) {
   }))
 }
 
-function createInfoBlockButton(buttonData) {
+export function createInfoBlockButton(buttonData) {
   if (!buttonData) {
     return null
   }
       /*  { Link element moved to InfoBlock.js } 
       return (
-          <Link href={`/${buttonData.slug}`} className= {`btn btn-medium btn--${buttonData.color}`}
+          <Link href={`/${buttonData.slug}`} 
+          className= {`btn btn-medium btn--${buttonData.color}`}
           >{buttonData.text}</Link>
       ) */
    return {
@@ -46,4 +47,26 @@ function createInfoBlockButton(buttonData) {
   }
 }
 
-export { createInfoBlockButton };
+export async function fetchBlogArticles() {
+  const blogData = await fetchDataFromStrapi("blog-articles?populate=*")
+  const processBlogArticles = blogData.map(processBlogArticle)
+  processBlogArticles.sort(
+    (a, z) => new Date(z.publishedAt) - new Date(a.publishedAt)
+  )
+  
+  return processBlogArticles
+}
+
+function processBlogArticle(article) {
+  return {
+     ...article.attributes,
+      id: article.id,
+      featuredImage: BASE_URL + article.featuredImage?.formats?.thumbnail?.url,
+      headline: article.headline,
+      publishedAt: article.publishedAt,
+      isHighlightArticle: article.isHighlightArticle,
+      excerpt: article.excerpt,
+      slug: article.slug    
+  }
+
+}
