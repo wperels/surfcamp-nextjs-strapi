@@ -2,19 +2,19 @@
 import HighlightArticle from "../_components/Blog/HighlightArticle";
 import SubscribeToNewsletter from "../_components/Blog/SubscribeToNewsletter";
 import FeaturedItems from "../_components/FeaturedItems/FeaturedItems";
-import {  fetchBlogArticles } from "../../utils/strapi.utils"; 
+import {  fetchBlogArticles, formatDate } from "../../utils/strapi.utils"; 
 
 export default async function Page() {
  const data = await fetchBlogArticles();
  // write different queries: first one to find the highlight blog article
  // find the articles that are not highlight articles but sorted by publishing date.
-console.log(data) 
+//console.log(data) 
   
    const highlightArticleData = data.find(
     (article) => article.isHighlightArticle
   ); 
 
-  const featuredArticleData = data.filter(
+  const featuredArticlesData = data.filter(
     (article) => !article.isHighlightArticle
   )
 
@@ -36,7 +36,7 @@ blogData.map( (article) =>
   })
 ) */
 
-  const highlightArticleData2 = {
+/*   const highlightArticleData2 = {
       headline: "3 tips for a super fast takeoff",
       excerpt: (
         <>
@@ -48,9 +48,9 @@ blogData.map( (article) =>
       ),
       slug: "takeoff",
       featuredImage: "/assets/blog-3tips.png"
-  }  
+  }  */ 
 
-const featuredArticleData2 = [{
+/* const featuredArticlesData2 = [{
   headline: "surfboard shaping and design behind the scenes of crafting the perfect board",
   slug: "/blog/whatever",
   date: "Monday, June 05, 2023",
@@ -82,7 +82,7 @@ const featuredArticleData2 = [{
   slug: "/blog/whatever6",
   date: "Monday, June 05, 2023",
   featuredImage: "/assets/hero-experience.png"
-}] 
+}]  */
 
   return (
     
@@ -91,7 +91,7 @@ const featuredArticleData2 = [{
        It receives the article data as a prop and displays the article's headline, excerpt, and featured image. */}
       <HighlightArticle data={highlightArticleData}/>
         <SubscribeToNewsletter />
-        <FeaturedItems items={featuredArticleData}/>
+        <FeaturedItems items={featuredArticlesData}/>
     </main>
   );
 }
