@@ -12,7 +12,7 @@ export default async function Home() {
      
     const infoBlockData = processInfoBlocks(data)
 
-console.log(infoBlockData)
+  //console.log(infoBlockData)
   const heroHeadline = (    
   <>
     <h1>barrel.</h1>

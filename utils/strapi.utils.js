@@ -12,7 +12,7 @@ export async function fetchDataFromStrapi(route) {
         return response.data.data
       } catch (err) {
         console.log(err)
-      throw new Error(`Failed to fetch data from: ${url}`);
+        throw new Error(`Failed to fetch data from: ${url}`);
       }
 }
 
@@ -66,11 +66,13 @@ function processBlogArticle(article) {
       publishedAt: article.publishedAt,
       isHighlightArticle: article.isHighlightArticle,
       excerpt: article.excerpt,
-      slug: article.slug    
+      slug: article.slug,
+      author: article.author    
   }
 
 }
 
+// Format a date string into a human-readable format
 export function formatDate(dateString) {
   const date = new Date(dateString);
   const options = { year: 'numeric', month: 'long', day: 'numeric' }; 
