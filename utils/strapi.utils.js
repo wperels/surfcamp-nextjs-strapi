@@ -48,11 +48,13 @@ export function createInfoBlockButton(buttonData) {
 }
 
 export async function fetchBlogArticles() {
-  const blogData = await fetchDataFromStrapi("blog-articles?populate=*")
-  const processBlogArticles = blogData.map(processBlogArticle)
-  processBlogArticles.sort(
-    (a, z) => new Date(z.publishedAt) - new Date(a.publishedAt)
-  )
+  const blogData = await fetchDataFromStrapi('blog-articles?populate=*')
+    // 'blog-articles?populate[articleContent][populate]=*&populate[featuredImage]=*'
+    
+    const processBlogArticles = blogData.map(processBlogArticle)
+      processBlogArticles.sort(
+        (a, z) => new Date(z.publishedAt) - new Date(a.publishedAt)
+      )
   
   return processBlogArticles
 }
@@ -67,7 +69,9 @@ function processBlogArticle(article) {
       isHighlightArticle: article.isHighlightArticle,
       excerpt: article.excerpt,
       slug: article.slug,
-      author: article.author    
+      author: article.author,
+      articleContent: article.articleContent || []
+         
   }
 
 }
