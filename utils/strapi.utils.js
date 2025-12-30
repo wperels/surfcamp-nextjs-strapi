@@ -48,8 +48,7 @@ export function createInfoBlockButton(buttonData) {
 }
 
 export async function fetchBlogArticles() {
-  const blogData = await fetchDataFromStrapi('blog-articles?populate=*')
-    // 'blog-articles?populate[articleContent][populate]=*&populate[featuredImage]=*'
+  const blogData = await fetchDataFromStrapi('blog-articles?populate[articleContent][populate]=*&populate=featuredImage')
     
     const processBlogArticles = blogData.map(processBlogArticle)
       processBlogArticles.sort(
@@ -61,19 +60,26 @@ export async function fetchBlogArticles() {
 
 function processBlogArticle(article) {
   return {
-     ...article.attributes,
+     ...article,
       id: article.id,
-      featuredImage: BASE_URL + article.featuredImage?.formats?.thumbnail?.url,
-      headline: article.headline,
-      publishedAt: article.publishedAt,
-      isHighlightArticle: article.isHighlightArticle,
-      excerpt: article.excerpt,
-      slug: article.slug,
-      author: article.author,
+      featuredImage: article.featuredImage?.url ? BASE_URL + article.featuredImage.url : null,
       articleContent: article.articleContent || []
-         
   }
 
+}
+
+function processImageTextComponent(component) {
+
+  return {
+    ...component.attributes,
+    id: component.id,
+    paragraph: component.paragraph,
+    imageCaption: component.imageCaption,
+    image: BASE_URL + component.image?.formats?.thumbnail?.url,
+    isLandscape: component.isLandscape,
+    imageShowsRight: component.imageShowsRight,
+    articleContent: article.articleContent || []
+  }
 }
 
 // Format a date string into a human-readable format
@@ -81,4 +87,9 @@ export function formatDate(dateString) {
   const date = new Date(dateString);
   const options = { year: 'numeric', month: 'long', day: 'numeric' }; 
   return date.toLocaleDateString('en-US', options);
+}
+
+export function extractImageUrl(imageData) {
+  if (!imageData || typeof imageData !== 'object') return '';
+  return BASE_URL + (imageData.url || imageData.formats?.thumbnail?.url || '');
 }
