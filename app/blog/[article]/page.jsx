@@ -2,7 +2,7 @@ import ArticleIntro from "@/app/_components/Blog/ArticleIntro";
 import {  fetchBlogArticles, fetchDataFromStrapi } from "../../../utils/strapi.utils"; 
 import ArticleOverview from "@/app/_components/Blog/ArticleOverview";
 import ArticleComponent from "@/app/_components/Blog/ArticleComponent";
-
+import ArticleHeadline from "@/app/_components/Blog/ArticleHeadline"
 
 export default async function Page({ params }) {
   // the article property is renamed to slug using the ": slug" syntax. 
@@ -15,6 +15,9 @@ export default async function Page({ params }) {
   if (!article) {
     return <main>Article not found for slug: {slug}</main>;
   }
+/*   const headlines = article.articleContent.filter(
+    (component) => component.__component === "blog-article.headline"
+  ) */
 
   return (
     <main>
@@ -24,6 +27,7 @@ export default async function Page({ params }) {
       {article.articleContent.map((component) => (
         <ArticleComponent key={component.id} component={component} />
       ) )}
+      
      </section>
     </main>
   );
