@@ -38,8 +38,7 @@ export function createInfoBlockButton(buttonData) {
       return (
           <Link href={`/${buttonData.slug}`} 
           className= {`btn btn-medium btn--${buttonData.color}`}
-          >{buttonData.text}</Link>
-      ) */
+          >{buttonData.text}</Link>) */
    return {
     text: buttonData.text,
     slug: buttonData.slug,
@@ -82,6 +81,18 @@ function processImageTextComponent(component) {
   }
 }
 
+ // Helper function to render paragraph content
+export function renderParagraphContent(paragraphArray) {
+  if (!paragraphArray || !Array.isArray(paragraphArray)) return '';
+  
+  return paragraphArray.map((para) => {
+    if (para.type === 'paragraph' && para.children) {
+      return para.children.map(child => child.text).join('');
+    }
+    return '';
+  }).join('\n\n');
+}
+
 // Format a date string into a human-readable format
 export function formatDate(dateString) {
   const date = new Date(dateString);
@@ -89,6 +100,7 @@ export function formatDate(dateString) {
   return date.toLocaleDateString('en-US', options);
 }
 
+//Extract the URL of an image from the given image data.
 export function extractImageUrl(imageData) {
   if (!imageData || typeof imageData !== 'object') return '';
   return BASE_URL + (imageData.url || imageData.formats?.thumbnail?.url || '');
