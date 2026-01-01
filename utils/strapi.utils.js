@@ -82,6 +82,7 @@ function processImageTextComponent(component) {
 }
 
  // Helper function to render paragraph content
+ //extracts the text from each child and joins them together with a newline character.
 export function renderParagraphContent(paragraphArray) {
   if (!paragraphArray || !Array.isArray(paragraphArray)) return '';
   
@@ -104,4 +105,23 @@ export function formatDate(dateString) {
 export function extractImageUrl(imageData) {
   if (!imageData || typeof imageData !== 'object') return '';
   return BASE_URL + (imageData.url || imageData.formats?.thumbnail?.url || '');
+}
+
+
+//Extract the URL of an image from the given image data.
+export function extractLandscapeImageUrl(imageData) {
+  if (!imageData) return '';
+  
+  // If imageData is already a string (URL path), prepend BASE_URL
+  if (typeof imageData === 'string') {
+    return imageData.startsWith('http') ? imageData : BASE_URL + imageData;
+  }
+  
+  // If imageData is an object, extract the URL
+  if (typeof imageData === 'object') {
+    const url = imageData.url || imageData.image?.[0]?.url;
+    return url ? BASE_URL + url : '';
+  }
+  
+  return '';
 }

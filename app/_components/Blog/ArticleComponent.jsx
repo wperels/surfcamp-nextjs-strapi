@@ -1,7 +1,7 @@
 import ArticleHeadline from "./ArticleHeadline";
-//import ArticleParagraph from "./ArticleParagraph";
+import ArticleParagraph from "./ArticleParagraph";
 import ImageTextComponent from "./ImageTextComponent";
-//import LandscapeImage from "./LandscapeImage";
+import LandscapeImage from "./LandscapeImage";
 
 
 const ArticleComponent = ( {component} ) => {
@@ -15,9 +15,9 @@ const ArticleComponent = ( {component} ) => {
       case "paragraph-with-image":
         return <ImageTextComponent component={component} />
       case "paragraph":
-          return <h1>Paragraph</h1>
+        return <ArticleParagraph paragraph={component} />
       case "landscape-image":
-        return <h1>Landscape Image</h1>
+        return <LandscapeImage imageData={component} />
       default:
         return <h1>Component not found</h1>
     }
