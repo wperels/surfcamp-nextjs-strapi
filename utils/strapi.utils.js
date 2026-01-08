@@ -68,7 +68,7 @@ function processBlogArticle(article) {
 }
 
 function processImageTextComponent(component) {
-
+// is this used?
   return {
     ...component.attributes,
     id: component.id,
@@ -97,7 +97,7 @@ export function renderParagraphContent(paragraphArray) {
 // Format a date string into a human-readable format
 export function formatDate(dateString) {
   const date = new Date(dateString);
-  const options = { year: 'numeric', month: 'long', day: 'numeric' }; 
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; 
   return date.toLocaleDateString('en-US', options);
 }
 

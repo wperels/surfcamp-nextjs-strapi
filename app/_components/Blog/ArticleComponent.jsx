@@ -6,7 +6,7 @@ import LandscapeImage from "./LandscapeImage";
 
 const ArticleComponent = ( {component} ) => {
   
-//console.log("component log",component)
+   //console.log("component log",component)
     const ComponentType = component.__component.split("blog-article.")[1]
 
     switch (ComponentType) {
