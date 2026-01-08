@@ -2,7 +2,7 @@ import axios from 'axios';
 import HeroSection from './_components/HeroSection'
 import InfoBlock from './_components/InfoBlock'
 import { fetchDataFromStrapi, processInfoBlocks } from '../utils/strapi.utils';
-
+import BlogPreview  from './_components/Blog/BlogPreview/BlogPreview'
 
 export default async function Home() {
   const data = await fetchDataFromStrapi("Infoblocks-landing2?populate[info_blocks][populate][0]=button&populate[info_blocks][populate][1]=image")
@@ -53,6 +53,7 @@ export default async function Home() {
             {/* <Infoblock data={InfoblockData}/>
               <Infoblock data={{...InfoblockData, reversed: true}}/>
             */}
+            <BlogPreview />
     </main>
   )
 }

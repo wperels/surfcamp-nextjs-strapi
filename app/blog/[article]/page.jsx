@@ -3,6 +3,7 @@ import {  fetchBlogArticles, fetchDataFromStrapi } from "../../../utils/strapi.u
 import ArticleOverview from "@/app/_components/Blog/ArticleOverview";
 import ArticleComponent from "@/app/_components/Blog/ArticleComponent";
 import ArticleHeadline from "@/app/_components/Blog/ArticleHeadline"
+import FeaturedItems from "@/app/_components/FeaturedItems/FeaturedItems"
 
 export default async function Page({ params }) {
   // the article property is renamed to slug using the ": slug" syntax. 
@@ -10,7 +11,12 @@ export default async function Page({ params }) {
   const { article: slug } = await params;
   const articles = await fetchBlogArticles()
   const article = articles.find((article) => article.slug === slug)
-  //console.log('Found article:', article)
+  
+ /*  <--an array of articles that are not the current article. --> */
+  const moreArticles = articles.filter((article) => article.slug !== slug)
+
+
+
  // Handle missing article
   if (!article) {
     return <main>Article not found for slug: {slug}</main>;
@@ -27,7 +33,7 @@ export default async function Page({ params }) {
       {article.articleContent.map((component) => (
         <ArticleComponent key={component.id} component={component} />
       ) )}
-      
+      <FeaturedItems items={moreArticles} headline={"Explore our other articles"} />
      </section>
     </main>
   );
