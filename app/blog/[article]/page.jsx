@@ -39,6 +39,10 @@ export default async function Page({ params }) {
   );
 }
 
+
+/*The generateStaticParams() function fetches data from Strapi using the fetchDataFromStrapi function  
+and maps over the fetched articles to create an array of objects with a single property named article. 
+The value of this property is the slug of each article.*/
 export async function generateStaticParams() {
   try {
     const articles = await fetchDataFromStrapi("blog-articles");
