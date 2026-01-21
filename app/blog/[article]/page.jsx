@@ -54,7 +54,7 @@ export async function generateStaticParams() {
     }));
   } catch (err) {
     console.log("Error fetching slugs for articles", err);
-return []
+    return []
   }
 }
 
