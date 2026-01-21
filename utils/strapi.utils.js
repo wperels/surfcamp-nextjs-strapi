@@ -125,3 +125,25 @@ export function extractLandscapeImageUrl(imageData) {
   
   return '';
 }
+
+export async function fetchIndividualEvent(documentId) {
+  try {
+    //console.log('Fetching:', ${BASE_URL}/api/events/${documentId})
+    const response = await axios.get(`${BASE_URL}/api/events/${documentId}`)
+    return processEventData(response.data.data)  // Return just the data portion
+  } catch (err) {
+    console.error(`Failed to fetch event ${documentId}:`, err.message)
+    throw err
+  }
+}
+
+export function processEventData(event) {
+  return {
+    ...event.attributes,
+      documentId: event.documentId,
+      name: event.name,
+      description: event.description,
+      singlePrice: event.singlePrice,
+      sharedPrice: event.sharedPrice
+  }
+}
