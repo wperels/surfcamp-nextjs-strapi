@@ -4,17 +4,20 @@ import TextInput from "../TextInput";
 import axios from "axios";
 import { allDataFilledIn } from "@/utils/validation.utils";
 import ReactMarkdown from "react-markdown";
+import {  generateSignupPayload } from "../../../utils/strapi.utils"; 
 
 
-const SignupForm = ({ headline, infoText, buttonLabel, pricing }) => {
+const SignupForm = ({ headline, infoText, buttonLabel, pricing, eventId }) => {
  const [formData, setFormData] = useState({
   firstName: "",
   lastName: "",
   email: "",
   phone: "",
  });
-  //console.log(pricing)
-  const [showConfirmation, setShowConfirmation] = useState(false)
+
+   //console.log('SignupForm received eventId:', eventId);
+
+   const [showConfirmation, setShowConfirmation] = useState(false)
   const [errorMessage, setErrorMessage] = useState(false)
 
  const onChange = (e) => {
@@ -24,14 +27,18 @@ const SignupForm = ({ headline, infoText, buttonLabel, pricing }) => {
       })) 
   //setFormData[{...formData, [e.target.name]: e.target.value}]
  };
+ 
+ /*  console.log('=== DEBUGGING EVENTID ===');
+  console.log('eventId value:', eventId);
+  console.log('eventId type:', typeof eventId);
+  console.log('Is it documentId?:', eventId); */
 
  const onSubmit = async (e) => {
   e.preventDefault()
-  const payload = {
-    data: {...formData, isGeneralInterest: true}
-  }
-
- let response; // Declare outside try block
+  
+  const payload = generateSignupPayload(formData, eventId)
+  
+     let response; // Declare outside try block
 
     if (allDataFilledIn(formData)) {
       try {

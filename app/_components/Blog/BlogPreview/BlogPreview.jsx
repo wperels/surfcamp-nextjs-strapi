@@ -11,7 +11,7 @@ const BlogPreview = async () => {
         // a new array named articlesToDisplay combining the highlightArticle and the recentlyPublishedArticles arrays.
     const articlesToDisplay = [highlightArticle, ...recentlyPublishedArticles]
 
-console.log("articlesToDisplay:",articlesToDisplay)
+  //console.log("articlesToDisplay:",articlesToDisplay)
 return (
     <div className="blog-preview">
       <h2 className="blog-preview__headline">the blog</h2>

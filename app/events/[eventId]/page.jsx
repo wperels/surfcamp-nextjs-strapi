@@ -7,28 +7,33 @@ export default async function Page({ params }) {
   const { eventId }  = await params
   const event = await fetchIndividualEvent(eventId)
 
- const processedDescription = renderParagraphContent(event.description)
-   const descriptionMarkdown = (
-    <div className="copy">
-    <ReactMarkdown>{processedDescription}</ReactMarkdown>
-    </div>
+  //console.log('Event data in page:', event); // This will show the contents of one event object
+  console.log('Event documentId:', event.documentId);//shows the event document ID.
+ 
+
+  const processedDescription = renderParagraphContent(event.description)
+  const descriptionMarkdown = (
+      <div className="copy intro-text">
+      <ReactMarkdown>{processedDescription}</ReactMarkdown>
+      </div>
   );
 
- const pricing = {
+  const pricing = {
     singlePrice: event.singlePrice,
     sharedPrice: event.sharedPrice
-
   }
   
-  //console.log("Events:", event)  // This will show all eventIds
-  console.log(descriptionMarkdown) // This will show the processed paragraphs
+ // console.log("Events:", event)  // This will show all eventIds
+ // console.log(descriptionMarkdown) // This will show the processed paragraphs
   
   return (
     <main className="events-page">
       <SignupForm headline={event.name} 
       infoText={descriptionMarkdown} 
       buttonLabel="Sign Up"
-      pricing={pricing}/>
+      eventId={event.documentId}
+      pricing={pricing}
+      />
     </main>
   );
 }
@@ -43,7 +48,7 @@ export async function generateStaticParams() {
     const slugs = events.map((event) => ({
       eventId: event.documentId,
     }))
-      //console.log("Generated slugs:", slugs)  // This will show all eventIds
+     //console.log("Generated slugs:", slugs)  // This will show all eventIds
       return slugs
   } catch (err) {
     console.log("Error fetching slugs for events", err);
