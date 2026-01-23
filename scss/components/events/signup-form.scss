@@ -54,4 +54,24 @@
       margin-bottom: 8px;
     }
   }
+
+  .intro-text p {
+  margin-bottom: 1.5rem; /* Adjust spacing as needed */
+  }
+
+  .intro-text h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .intro-text ul {
+    padding-left: 2rem; /* or 1.5rem, adjust to your preference */
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    list-style-position: outside; /* ensures bullets sit outside the text */
+  }
+
+  .intro-text li {
+    margin-bottom: 0.5rem;
+  }
+
 }

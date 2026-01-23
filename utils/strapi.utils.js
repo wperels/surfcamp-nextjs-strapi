@@ -147,3 +147,22 @@ export function processEventData(event) {
       sharedPrice: event.sharedPrice
   }
 }
+
+export function generateSignupPayload(formData, eventId) {
+  if (!eventId) {
+    return {
+      data: {...formData, isGeneralInterest: true}
+      } 
+    }  else {
+    return {
+      data: {
+        ...formData,
+        event: {
+          // Connect the participant to the event with the provided documentId
+          // This will create a relationship between the participant and the event
+          connect: [{ documentId: eventId }]  
+        }
+      }
+    }
+  }
+}
