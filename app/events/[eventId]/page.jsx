@@ -6,9 +6,10 @@ import ReactMarkdown from "react-markdown";
 export default async function Page({ params }) {
   const { eventId }  = await params
   const event = await fetchIndividualEvent(eventId)
+  //const otherEvents = await fetchAllEvents()
 
   //console.log('Event data in page:', event); // This will show the contents of one event object
-  console.log('Event documentId:', event.documentId);//shows the event document ID.
+  //console.log('Event documentId:', event.documentId);//shows the event document ID.
  
 
   const processedDescription = renderParagraphContent(event.description)
@@ -34,7 +35,8 @@ export default async function Page({ params }) {
       eventId={event.documentId}
       pricing={pricing}
       />
-    </main>
+      {/* <FeaturedItems items={otherEvents} itemType="events" headline="Explore other events"/>
+    */} </main>
   );
 }
 

@@ -1,9 +1,10 @@
 "use client"
 
 import FeaturedArticle from "./FeaturedArticle";
+import FeaturedEvent from "./FeaturedEvent";
 import { useState } from "react";
 
-const FeaturedItems = ( {headline, items} ) => {
+const FeaturedItems = ( {headline, items, itemType="article"} ) => {
   const [itemNumber, setItemNumber] = useState(3)
 
 // determine the number of items to display in a featured articles section
@@ -19,12 +20,16 @@ const FeaturedItems = ( {headline, items} ) => {
   return (
     <section className="fetured-items">
     <h3 className="featured-items__headline">
-      {headline || "Our featured articles"}
+      {headline || "Our featured events"}
     </h3>
     <div className="featured-items__container">
-      {items.slice(0, itemNumber).map((item) => (
-        <FeaturedArticle key={item.slug} article={item} />
-      ))}
+     {items.slice(0, itemNumber).map((item) => {
+          if (itemType === "article") {
+            return <FeaturedArticle key={item.slug} article={item} />;
+          } else {
+            return <FeaturedEvent key={item.id} event={item} />;
+          }
+        })}
     </div>
     { itemNumber < items.length && (
       <button className="btn btn--medium btn--turquoise" onClick={onShowMore}>
