@@ -1,9 +1,14 @@
 import SignupForm from "../_components/Events/SignupForm";
+import {  fetchAllEvents } from "../../utils/strapi.utils"; 
+import FeaturedItems from "../_components/FeaturedItems/FeaturedItems";
 
 
-export default function Page() {
+export default async function Page() {
+  const allEvents = await fetchAllEvents()  
+    //console.log("FetchAllEvents:", allEvents)
+    
 
-  const infoText = ( 
+    const infoText = ( 
     <>
           <p className="copy"> Staying in touch with our website is your ticket to catching the wave of exciting upcoming events at our surfing school! By subscribing to our updates, you'll be the first to know about:
       </p>
@@ -27,6 +32,7 @@ export default function Page() {
     <main className="events-page">
             
         <SignupForm infoText={infoText} headline={headline}/>
+        <FeaturedItems items={allEvents} itemType="events" headline="Upcoming camps and events"/>
     </main>
   );
 }

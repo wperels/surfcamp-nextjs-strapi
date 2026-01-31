@@ -1,5 +1,5 @@
 import axios from 'axios';
-//import Link from 'next/link';
+import qs from 'qs';
 
 
 const BASE_URL = process.env.STRAPI_URL || "http://127.0.0.1:1337";
@@ -19,6 +19,7 @@ export async function fetchDataFromStrapi(route) {
 export function processInfoBlocks(data) {
   const infoBlocksRaw = data.info_blocks
   return infoBlocksRaw.map( (infoBlock) => ({
+     //key: infoBlock.id,
     ...infoBlock.attributes,
       id: infoBlock.id,
       showimageRight: infoBlock.showimageRight,
@@ -137,14 +138,27 @@ export async function fetchIndividualEvent(documentId) {
   }
 }
 
+//article.featuredImage?.url ? BASE_URL + article.featuredImage.url : null,
 export function processEventData(event) {
+
+  // Image is nested in attributes.Image.data.attributes.url in Strapi v5
+  const imageUrl = event.attributes?.image?.data?.attributes?.url || 
+                   event.image?.url ||
+                   null;
+
+  const startingDate = event.attributes?.startingDate || event.startingDate;                 
+
   return {
     ...event.attributes,
+      id: event.id,
       documentId: event.documentId,
       name: event.name,
       description: event.description,
       singlePrice: event.singlePrice,
-      sharedPrice: event.sharedPrice
+      sharedPrice: event.sharedPrice,
+      startingDate: startingDate,
+      //image: BASE_URL + event?.Image?.url
+      image: imageUrl ? BASE_URL + imageUrl : null 
   }
 }
 
@@ -166,3 +180,32 @@ export function generateSignupPayload(formData, eventId) {
     }
   }
 }
+
+  export async function fetchAllEvents() {
+    const query = qs.stringify(
+      {
+        pagination: {
+          start: 0,
+          limit: 12
+        },
+        populate: {
+          image: {
+             populate: "*"
+          }
+        },
+        sort: ["startingDate:asc"],
+        filters: {
+            startingDate: {
+              //$gt: new Date()
+              $gt: new Date().toISOString(),
+            },
+        } 
+      }, 
+      {
+        encodeValuesOnly: true,
+      })
+    const response = await axios.get(`${BASE_URL}/api/events?${query}`)
+    //console.log("FetchQuery:", `${BASE_URL}/api/events?${query}`)
+    //console.log("Raw event data:", JSON.stringify(response.data.data[0], null, 2))
+    return response.data.data.map((event) => processEventData(event))
+  }
