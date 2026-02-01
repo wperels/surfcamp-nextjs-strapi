@@ -1,12 +1,14 @@
 import SignupForm from "@/app/_components/Events/SignupForm";
-import {  fetchDataFromStrapi, fetchIndividualEvent, renderParagraphContent, processEventData } from "../../../utils/strapi.utils"; 
+import {  fetchDataFromStrapi, fetchIndividualEvent, renderParagraphContent, processEventData, fetchAllEvents } from "../../../utils/strapi.utils"; 
 import ReactMarkdown from "react-markdown";
+import FeaturedItems from "@/app/_components/FeaturedItems/FeaturedItems";
+
 
 
 export default async function Page({ params }) {
   const { eventId }  = await params
   const event = await fetchIndividualEvent(eventId)
-  //const otherEvents = await fetchAllEvents()
+  const otherEvents = await fetchAllEvents(eventId)
 
   //console.log('Event data in page:', event); // This will show the contents of one event object
   //console.log('Event documentId:', event.documentId);//shows the event document ID.
@@ -35,8 +37,8 @@ export default async function Page({ params }) {
       eventId={event.documentId}
       pricing={pricing}
       />
-      {/* <FeaturedItems items={otherEvents} itemType="events" headline="Explore other events"/>
-    */} </main>
+      <FeaturedItems items={otherEvents} itemType="events" headline="Explore our other events"/>
+    </main>
   );
 }
 
