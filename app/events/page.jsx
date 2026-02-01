@@ -1,6 +1,6 @@
 import SignupForm from "../_components/Events/SignupForm";
 import {  fetchAllEvents } from "../../utils/strapi.utils"; 
-import FeaturedItems from "../_components/FeaturedItems/FeaturedItems";
+import FeaturedItems from "@/app/_components/FeaturedItems/FeaturedItems";
 
 
 export default async function Page() {
@@ -32,7 +32,7 @@ export default async function Page() {
     <main className="events-page">
             
         <SignupForm infoText={infoText} headline={headline}/>
-        <FeaturedItems items={allEvents} itemType="events" headline="Upcoming camps and events"/>
+        <FeaturedItems items={allEvents} itemType="events" headline="Upcoming camps & events"/>
     </main>
   );
 }
