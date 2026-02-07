@@ -200,13 +200,20 @@ function createEventQuery(eventIdToExclude) {
     },
   };
 
+  // If eventIdToExclude is provided, add a filter to the query object to exclude the event with the given documentId
   if (eventIdToExclude) {
-     queryObject.filters.documentId = { 
+    queryObject.filters.documentId = { 
+      // Use the $ne operator to exclude the event with the given documentId
+      // $ne is the MongoDB operator for "not equal to"
       $ne: eventIdToExclude,
     };
   }
+
+  // Use the qs library to convert the query object to a URL query string
+  // The encodeValuesOnly option is set to true to ensure that only the values of the query object are URL encoded
   return qs.stringify(queryObject, { encodeValuesOnly: true });
 }
+
 
   export async function fetchAllEvents(eventIdToExclude = null) {
   const query = createEventQuery(eventIdToExclude);
