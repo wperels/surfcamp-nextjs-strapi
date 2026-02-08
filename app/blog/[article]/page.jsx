@@ -5,6 +5,7 @@ import ArticleComponent from "@/app/_components/Blog/ArticleComponent";
 import ArticleHeadline from "@/app/_components/Blog/ArticleHeadline"
 import FeaturedItems from "@/app/_components/FeaturedItems/FeaturedItems"
 
+export const revalidate = 3600; // Revalidate every hour
 export default async function Page({ params }) {
   // the article property is renamed to slug using the ": slug" syntax. 
   // the slug variable will contain the value of "params.article".

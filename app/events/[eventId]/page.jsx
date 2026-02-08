@@ -5,6 +5,7 @@ import FeaturedItems from "@/app/_components/FeaturedItems/FeaturedItems";
 
 
 
+export const revalidate = 3600; // Revalidate every hour
 export default async function Page({ params }) {
   const { eventId }  = await params
   const event = await fetchIndividualEvent(eventId)

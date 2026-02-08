@@ -6,6 +6,7 @@ import {  fetchBlogArticles, formatDate } from "../../utils/strapi.utils";
 import ArticleIntro from "../_components/Blog/ArticleIntro";
 
 
+export const revalidate = 3600; // Revalidate every hour
 export default async function Page() {
  const data = await fetchBlogArticles();
  //console.log(data) // Check if data is fetched correctly
