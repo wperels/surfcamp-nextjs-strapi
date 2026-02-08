@@ -59,4 +59,3 @@ export async function generateStaticParams() {
   }
 }
 
-export const revalidate = 300;
