@@ -3,6 +3,7 @@ import {  fetchAllEvents } from "../../utils/strapi.utils";
 import FeaturedItems from "@/app/_components/FeaturedItems/FeaturedItems";
 
 
+export const revalidate = 3600; // Revalidate every hour
 export default async function Page() {
   const allEvents = await fetchAllEvents()  
     //console.log("FetchAllEvents:", allEvents)

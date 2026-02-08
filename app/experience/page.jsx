@@ -3,6 +3,7 @@ import InfoBlock from './../_components/InfoBlock'
 import {fetchDataFromStrapi, processInfoBlocks } from '../../utils/strapi.utils';   
 
 
+export const revalidate = 3600; // Revalidate every hour
 export default async function Home() {
 
     const data = await fetchDataFromStrapi("Infoblocks-experience2?populate[info_blocks][populate][0]=button&populate[info_blocks][populate][1]=image")
