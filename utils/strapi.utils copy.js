@@ -1,28 +1,16 @@
 import axios from 'axios';
 import qs from 'qs';
 
-const BASE_URL = process.env.STRAPI_URL || "http://127.0.0.1:1337";
 
-// Helper to check if URL is already complete (Cloudinary or external)
-export function getStrapiMediaUrl(url) {
-  if (!url) return null;
-  
-  // If URL already starts with http/https, it's from Cloudinary - return as-is
-  if (url.startsWith('http://') || url.startsWith('https://')) {
-    return url;
-  }
-  
-  // Otherwise, it's a local upload - prepend BASE_URL
-  return `${BASE_URL}${url}`;
-}
+const BASE_URL = process.env.STRAPI_URL || "http://127.0.0.1:1337";
 
 export async function fetchDataFromStrapi(route) {
   const url = `${BASE_URL}/api/${route}`;
 
-  try {
+try {
     console.log(`Fetching from: ${url}`);
     const response = await axios.get(url, {
-      timeout: 10000,
+      timeout: 10000, // 10 second timeout
     });
     return response.data.data;
   } catch (err) {
@@ -38,13 +26,15 @@ export async function fetchDataFromStrapi(route) {
 export function processInfoBlocks(data) {
   const infoBlocksRaw = data.info_blocks
   return infoBlocksRaw.map( (infoBlock) => ({
-      ...infoBlock.attributes,
+     //key: infoBlock.id,
+    ...infoBlock.attributes,
       id: infoBlock.id,
       showimageRight: infoBlock.showimageRight,
-      imageSrc: getStrapiMediaUrl(infoBlock.image?.formats?.thumbnail?.url),
+      imageSrc: BASE_URL + infoBlock.image?.formats?.thumbnail?.url,
       headline: infoBlock.headline,
       text: infoBlock.text[0].children[0].text,
       button: createInfoBlockButton(infoBlock.button)
+
   }))
 }
 
@@ -52,6 +42,11 @@ export function createInfoBlockButton(buttonData) {
   if (!buttonData) {
     return null
   }
+      /*  { Link element moved to InfoBlock.js } 
+      return (
+          <Link href={`/${buttonData.slug}`} 
+          className= {`btn btn-medium btn--${buttonData.color}`}
+          >{buttonData.text}</Link>) */
    return {
     text: buttonData.text,
     slug: buttonData.slug,
@@ -74,24 +69,28 @@ function processBlogArticle(article) {
   return {
      ...article,
       id: article.id,
-      featuredImage: article.featuredImage?.url ? getStrapiMediaUrl(article.featuredImage.url) : null,
+      featuredImage: article.featuredImage?.url ? BASE_URL + article.featuredImage.url : null,
       articleContent: article.articleContent || []
   }
+
 }
 
 function processImageTextComponent(component) {
+// is this used?
   return {
     ...component.attributes,
     id: component.id,
     paragraph: component.paragraph,
     imageCaption: component.imageCaption,
-    image: getStrapiMediaUrl(component.image?.formats?.thumbnail?.url),
+    image: BASE_URL + component.image?.formats?.thumbnail?.url,
     isLandscape: component.isLandscape,
     imageShowsRight: component.imageShowsRight,
-    articleContent: component.articleContent || []
+    articleContent: article.articleContent || []
   }
 }
 
+ // Helper function to render paragraph content
+ //extracts the text from each child and joins them together with a newline character.
 export function renderParagraphContent(paragraphArray) {
   if (!paragraphArray || !Array.isArray(paragraphArray)) return '';
   
@@ -103,30 +102,33 @@ export function renderParagraphContent(paragraphArray) {
   }).join('\n\n');
 }
 
+// Format a date string into a human-readable format
 export function formatDate(dateString) {
   const date = new Date(dateString);
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; 
   return date.toLocaleDateString('en-US', options);
 }
 
+//Extract the URL of an image from the given image data.
 export function extractImageUrl(imageData) {
   if (!imageData || typeof imageData !== 'object') return '';
-  const url = imageData.url || imageData.formats?.thumbnail?.url || '';
-  return getStrapiMediaUrl(url);
+  return BASE_URL + (imageData.url || imageData.formats?.thumbnail?.url || '');
 }
 
+
+//Extract the URL of an image from the given image data.
 export function extractLandscapeImageUrl(imageData) {
   if (!imageData) return '';
   
-  // If imageData is already a string (URL path)
+  // If imageData is already a string (URL path), prepend BASE_URL
   if (typeof imageData === 'string') {
-    return getStrapiMediaUrl(imageData);
+    return imageData.startsWith('http') ? imageData : BASE_URL + imageData;
   }
   
   // If imageData is an object, extract the URL
   if (typeof imageData === 'object') {
     const url = imageData.url || imageData.image?.[0]?.url;
-    return getStrapiMediaUrl(url);
+    return url ? BASE_URL + url : '';
   }
   
   return '';
@@ -134,15 +136,19 @@ export function extractLandscapeImageUrl(imageData) {
 
 export async function fetchIndividualEvent(documentId) {
   try {
+    //console.log('Fetching:', ${BASE_URL}/api/events/${documentId})
     const response = await axios.get(`${BASE_URL}/api/events/${documentId}`)
-    return processEventData(response.data.data)
+    return processEventData(response.data.data)  // Return just the data portion
   } catch (err) {
     console.error(`Failed to fetch event ${documentId}:`, err.message)
     throw err
   }
 }
 
+//article.featuredImage?.url ? BASE_URL + article.featuredImage.url : null,
 export function processEventData(event) {
+
+  // Image is nested in attributes.Image.data.attributes.url in Strapi v5
   const imageUrl = event.attributes?.image?.data?.attributes?.url || 
                    event.image?.url ||
                    null;
@@ -158,7 +164,8 @@ export function processEventData(event) {
       singlePrice: event.singlePrice,
       sharedPrice: event.sharedPrice,
       startingDate: startingDate,
-      image: getStrapiMediaUrl(imageUrl)
+      //image: BASE_URL + event?.Image?.url
+      image: imageUrl ? BASE_URL + imageUrl : null 
   }
 }
 
@@ -172,6 +179,8 @@ export function generateSignupPayload(formData, eventId) {
       data: {
         ...formData,
         event: {
+          // Connect the participant to the event with the provided documentId
+          // This will create a relationship between the participant and the event
           connect: [{ documentId: eventId }]  
         }
       }
@@ -198,16 +207,22 @@ function createEventQuery(eventIdToExclude) {
     },
   };
 
+  // If eventIdToExclude is provided, add a filter to the query object to exclude the event with the given documentId
   if (eventIdToExclude) {
     queryObject.filters.documentId = { 
+      // Use the $ne operator to exclude the event with the given documentId
+      // $ne is the MongoDB operator for "not equal to"
       $ne: eventIdToExclude,
     };
   }
 
+  // Use the qs library to convert the query object to a URL query string
+  // The encodeValuesOnly option is set to true to ensure that only the values of the query object are URL encoded
   return qs.stringify(queryObject, { encodeValuesOnly: true });
 }
 
-export async function fetchAllEvents(eventIdToExclude = null) {
+
+  export async function fetchAllEvents(eventIdToExclude = null) {
   const query = createEventQuery(eventIdToExclude);
 
   const response = await axios.get(`${BASE_URL}/api/events?${query}`);
