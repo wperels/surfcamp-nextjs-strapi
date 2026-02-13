@@ -5,7 +5,7 @@ const HeroSection = ({ imgSrc, headline, theme="turquoise" }) => {
   return (
     <section className="hero">
       <div className="hero__background">
-        <img src= {imgSrc || "/assets/hero-home.png"} width={700} height={500} alt="Hero"></Image>
+        <img src= {imgSrc || "/assets/hero-home.png"} width={700} height={500} alt="Hero"></img>
       </div>
       <div className= {`hero__headline  hero__headline--${theme}`}>
         {headline || <h1>headline missing </h1>}
@@ -13,7 +13,7 @@ const HeroSection = ({ imgSrc, headline, theme="turquoise" }) => {
       <button className={ `btn  btn--medium btn--${theme}` }>
         <Link href="/events">Book Now</Link>
       </button>
-        <img className={`hero__logo hero__logo--${theme}`} src= {"/assets/logo.svg"} width={100} height={500} alt="Hero"></Image>
+        <img className={`hero__logo hero__logo--${theme}`} src= {"/assets/logo.svg"} width={100} height={500} alt="Hero"></img>
     </section>
 
   )
