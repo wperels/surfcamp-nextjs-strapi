@@ -22,7 +22,7 @@ const Header = () => {
       // <header className={`header ${path === "/experience" || path === "/blog/takeoff" ? "header--light" : ""}`}>
       // use the above line if you want to apply the light theme to the blog/takeoff page.
       <header className={`header ${path === "/experience" ? "header--light" : ""}`}>
-      <Image className="header__logo" src="/assets/Logo.svg" width={200} height={200} alt="Logo" />
+      <img className="header__logo" src="/assets/Logo.svg" width={200} height={200} alt="Logo" />
       <ul className="header__nav">
         {navItems.map( (item) => (
        <li key={item.slug}>

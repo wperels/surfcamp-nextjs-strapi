@@ -13,7 +13,7 @@ const ArticleComponent = ( {component} ) => {
       case "headline":
         return <ArticleHeadline headline={component} />
       case "paragraph-with-image":
-        return <ImageTextComponent component={component} />
+        return <imgTextComponent component={component} />
       case "paragraph":
         return <ArticleParagraph paragraph={component} />
       case "landscape-image":
