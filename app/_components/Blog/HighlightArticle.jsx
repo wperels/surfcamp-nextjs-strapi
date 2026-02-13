@@ -17,7 +17,7 @@ const HighlightArticle = ( {data} ) => {
         Read More
       </Link>
     </div>
-      {/* <Image className="highlight-article__image" src={featuredImage} width= {500} height={500} alt="" ></Image>*/}
+      {/* <img className="highlight-article__image" src={featuredImage} width= {500} height={500} alt="" ></Image>*/}
     <img className="highlight-article__image" src={featuredImage} alt="" />
 
 </article>
