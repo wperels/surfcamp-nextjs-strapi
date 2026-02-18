@@ -1,4 +1,4 @@
-//'use client';
+'use client';
 import { use } from "react"
 import Header from './_components/Layout/Header'
 import Footer from './_components/Layout/Footer'
