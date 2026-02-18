@@ -1,10 +1,10 @@
-'use client';
+//'use client';
 import { use } from "react"
 import Header from './_components/Layout/Header'
 import Footer from './_components/Layout/Footer'
-//import HeroSection from './_components/HeroSection'
-//import InfoBlock from './_components/InfoBlock'
-//import '../scss/main.scss';
+import HeroSection from './_components/HeroSection'
+import InfoBlock from './_components/InfoBlock'
+import '../scss/main.scss';
 import './../scss/main.scss'
 
 export const metadata = {
