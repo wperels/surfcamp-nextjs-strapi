@@ -8,6 +8,13 @@
   align-items: center;
   padding:2rem 4.8rem;
   z-index: 10;
+  padding: 2rem 4.8rem;  // Desktop
+
+  @include respond(phone) {
+    padding: 1rem 1.5rem;  // Mobile
+    .logo { width: 4rem; }
+    nav li:not(:last-of-type) { margin-right: 2rem; }
+  }
 
   &--light {
     color: white;
