@@ -1,10 +1,11 @@
+'use client';
 import { use } from "react"
-import './../scss/main.scss'
 import Header from './_components/Layout/Header'
 import Footer from './_components/Layout/Footer'
-import HeroSection from './_components/HeroSection'
-import InfoBlock from './_components/InfoBlock'
-import '../scss/main.scss';
+//import HeroSection from './_components/HeroSection'
+//import InfoBlock from './_components/InfoBlock'
+//import '../scss/main.scss';
+import './../scss/main.scss'
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,10 +15,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body>
         <Header /> 
-       
-        {children}
+      {children}
         <Footer />
         </body>
     </html>
