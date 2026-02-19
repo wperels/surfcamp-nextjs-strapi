@@ -21,3 +21,10 @@
 @import "components/events/signup-form.scss";
 
 @import "pages/blog"; 
+
+@media (max-width: 56.25em) {
+  .header {
+    padding: 1rem 1.5rem !important;
+    background: hotpink !important;
+  }
+}
