@@ -1,19 +1,20 @@
 .header {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 4.8rem; // Desktop
+  padding: 2rem 4.8rem;  // Desktop
   z-index: 10;
 
   @include respond(phone) {
-    padding: 1rem 1.5rem;  // Mobile
-    .logo { width: 4rem; }
-    nav li:not(:last-of-type) { margin-right: 2rem; }
-  }
+    padding: 1rem 1.5rem;  // Mobile - NO !important
+    .logo { 
+      width: 4rem; 
+    }
+    nav li:not(:last-of-type) { 
+      margin-right: 2rem; 
+    }
 
   &--light {
     color: white;
