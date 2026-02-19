@@ -1,7 +1,7 @@
-@import "./base/_mixins.scss";
-@import "./base/_variables.scss";
-@import "./base/_typography.scss";
-@import "./base/_base.scss";
+@import "./base/mixins.scss";
+@import "./base/variables.scss";
+@import "./base/typography.scss";
+@import "./base/base.scss";
 
 @import "components/header";
 @import "components/button";
@@ -18,7 +18,7 @@
 @import "components/blog/article-components";
 @import "components/blog-preview";
 
-@import "components/events/signup-form.scss";
+@import "components/events/signup-form";
 
 @import "pages/blog"; 
 
