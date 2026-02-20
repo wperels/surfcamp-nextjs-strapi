@@ -7,6 +7,16 @@
   padding: 2rem 4.8rem;  // Desktop
   z-index: 10;
 
+    &__nav {
+      display: flex;
+      flex-wrap: nowrap;
+      list-style: none;
+    
+        & li:not(:last-of-type) {
+          margin-right: 4.6rem;
+        }
+    }
+
   @include respond(phone) {
     padding: 1rem 1.5rem;  // Mobile - NO !important
     .logo { 
@@ -28,14 +38,6 @@
       width: 5rem;
     }
 
-    &__nav {
-      display: flex;
-      flex-wrap: nowrap;
-      list-style: none;
-    
-        & li:not(:last-of-type) {
-          margin-right: 4.6rem;
-        }
-    }
+
   }  
 } 
