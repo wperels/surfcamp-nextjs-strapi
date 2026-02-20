@@ -30,6 +30,7 @@
 
     &__nav {
       display: flex;
+      flex-wrap: nowrap;
       list-style: none;
     
         & li:not(:last-of-type) {
