@@ -15,26 +15,26 @@
     nav li:not(:last-of-type) { 
       margin-right: 2rem; 
     }
+  }
 
   &--light {
     color: white;
 
     & .header__logo {
-      filter: invert(99%) sepia(3%) saturate(825%) hue-rotate(200deg)
-        brightness(118%) contrast(100%);
+      filter: invert(99%) sepia(3%) saturate(825%) hue-rotate(200deg) brightness(118%)
     }
 
+    &__logo {
+      width: 5rem;
+    }
+
+    &__nav {
+      display: flex;
+      list-style: none;
+    
+        & li:not(:last-of-type) {
+          margin-right: 4.6rem;
+        }
+    }
   }  
-  &__logo {
-    width: 5rem;
-  }
-
-   &__nav {
-    display: flex;
-    list-style: none;
-  
-    & li:not(:last-of-type) {
-      margin-right: 4.6rem;
-    }
-  }
-}   
+} 
