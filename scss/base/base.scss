@@ -64,3 +64,19 @@ html {
 .bold {
   font-weight: bold;
 } 
+
+/* Global responsive containers */
+.page-container, 
+main, 
+.blog-preview, 
+.featured-items {
+  padding: 0 4.8rem;  /* Desktop */
+
+  @include respond(phone) {
+    padding: 0 1.5rem;  /* Mobile */
+  }
+
+  @include respond(tab-land) {
+    padding: 0 2.5rem;  /* Tablet */
+  }
+}
