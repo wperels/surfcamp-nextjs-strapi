@@ -7,10 +7,19 @@
   height: 83rem;
   padding: 22rem 4.8rem 0;
 
+  @include respond(tab-land) {
+    height: 65vh; // Tablet landscape
+    padding: 15rem 2.5rem 0;
+  }
+
   @include respond(phone) {
-    height: 50vh;  // Mobile height
+    height: 50vh; // Mobile height
     padding: 8rem 1.5rem 0;
-    .headline { font-size: 3.5rem; line-height: 1.2; }
+
+    .headline {
+      font-size: 3.5rem;
+      line-height: 1.2;
+    }
   }
 
   &__background {
