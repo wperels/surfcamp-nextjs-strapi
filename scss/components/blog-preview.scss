@@ -6,6 +6,10 @@
   margin-bottom: 12rem;
   padding: 0 4.8rem;
 
+  @include respond(tab-land) {
+    padding: 0 2.5rem;
+  }
+
   &__headline {
     margin-bottom: 8rem;
   }
@@ -15,22 +19,27 @@
     flex-wrap: wrap;
     column-gap: 6%;
     row-gap: 6rem;
-    column-gap: 6rem;  // Desktop
+    column-gap: 6rem; // Desktop
+
+    @include respond(tab-land) {
+      column-gap: 4rem;
+      row-gap: 4rem;
+    }
 
     @include respond(phone) {
-        flex-direction: column !important;
-        gap: 3rem;
-        width: 100%;
-      }
+      flex-direction: column !important;
+      gap: 3rem;
+      width: 100%;
+    }
   }
 
   &__item {
     &:nth-of-type(1) {
       width: 60.5%;
-      width: 32.5%;  // Desktop
+      width: 32.5%; // Desktop
 
-    @include respond(phone) {
-      width: 100% !important;
+      @include respond(phone) {
+        width: 100% !important;
       }
     }
 
