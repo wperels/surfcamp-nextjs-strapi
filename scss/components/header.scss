@@ -9,8 +9,6 @@
   padding: 2rem 4.8rem; // Desktop
   z-index: 10;
   gap: 2rem;
-  /* Modern gap property for spacing */
-
 
   &__nav {
     display: flex;
@@ -18,43 +16,43 @@
     list-style: none;
 
     & li:not(:last-of-type) {
-      margin-right: 4.6rem;
+      margin-right: 4.6rem; // Desktop nav spacing
     }
   }
 
+  &__logo {
+    width: 5rem;
+    margin-right: 2rem; // Right margin pushes headline away
+  }
+
+  // Tablet landscape (900-1200px)
   @include respond(tab-land) {
-    padding: 1.5rem 2.5rem; // Tablet landscape
+    padding: 1.5rem 2.5rem;
 
-    nav li:not(:last-of-type) {
-      margin-right: 3rem;
+    &__nav li:not(:last-of-type) {
+      margin-right: 3rem; // Tablet nav spacing
     }
   }
 
+  // Phone (<900px)
   @include respond(phone) {
-    padding: 1rem 1.5rem; // Mobile - NO !important
+    padding: 1rem 1.5rem;
 
     .logo {
       width: 4rem;
     }
 
-    nav li:not(:last-of-type) {
-      margin-right: 2rem;
+    &__nav {
+      gap: 1.5rem; // Mobile nav uses gap instead of margins
     }
   }
 
+  // Light theme variant (always applies)
   &--light {
     color: white;
 
-    & .header__logo {
-      filter: invert(99%) sepia(3%) saturate(825%) hue-rotate(200deg) brightness(118%)
+    .header__logo {
+      filter: invert(99%) sepia(3%) saturate(825%) hue-rotate(200deg) brightness(118%) contrast(100%);
     }
-
-    &__logo {
-      width: 5rem;
-      margin-right: 2rem;
-      /* Right margin pushes headline away */
-    }
-
-
   }
 }
