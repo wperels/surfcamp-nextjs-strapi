@@ -31,4 +31,40 @@
   & .btn {
     margin-top: 3rem;
   }
+
+  @include respond(tab-land) {
+    padding-right: 2.5rem;
+
+    &--reversed {
+      padding-left: 2.5rem;
+      padding-right: 0;
+    }
+  }
+
+  @include respond(phone) {
+    flex-direction: column !important;
+    padding-right: 1.5rem;
+    padding-left: 0;
+    margin-top: 4rem;
+
+    &__image,
+    &__text {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    &__image {
+      border-radius: 0 !important;
+    }
+
+    &--reversed {
+      flex-direction: column !important;
+      padding-left: 1.5rem;
+      padding-right: 0;
+    }
+
+    &__headline {
+      margin-top: 1rem;
+    }
+  }
 }
