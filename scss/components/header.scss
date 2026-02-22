@@ -86,7 +86,7 @@
 
     // Show hamburger
     &__hamburger {
-      display: flex;
+      display: flex !important;
     }
 
     // Hide nav by default on mobile
