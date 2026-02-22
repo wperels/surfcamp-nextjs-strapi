@@ -19,7 +19,6 @@
     flex-wrap: wrap;
     column-gap: 6%;
     row-gap: 6rem;
-    column-gap: 6rem; // Desktop
 
     @include respond(tab-land) {
       column-gap: 4rem;
@@ -36,7 +35,6 @@
   &__item {
     &:nth-of-type(1) {
       width: 60.5%;
-      width: 32.5%; // Desktop
 
       @include respond(phone) {
         width: 100% !important;
