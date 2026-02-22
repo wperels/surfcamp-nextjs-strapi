@@ -1,0 +1,115 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4.8rem;
+  z-index: 100;
+
+  // ─── Logo ───────────────────────────────
+  &__logo {
+    width: 5rem;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  // ─── Nav ──────────────
+  &__nav {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 4.6rem;
+  }
+
+  // ─── Hamburger (hidden on desktop) ──────
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2.5rem;
+    height: 1.8rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 200;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+  }
+
+  // ─── Light theme ────────────────────────
+  &--light {
+    color: white;
+
+    .header__logo {
+      filter: invert(99%) sepia(3%) saturate(825%) hue-rotate(200deg) brightness(118%) contrast(100%);
+    }
+  }
+
+  // ─── TABLET (900px–1200px) ───────────────
+  @include respond(tab-land) {
+    padding: 1.5rem 2.5rem;
+
+    &__logo {
+      width: 4rem;
+    }
+
+    &__nav {
+      gap: 2.5rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  // ─── PHONE (<900px) ─────────────────────
+  @include respond(phone) {
+    padding: 1.2rem 1.5rem;
+    flex-wrap: wrap;
+
+    &__logo {
+      width: 3.5rem;
+    }
+
+    // Hide Book Now button on mobile
+    & > .btn {
+      display: none;
+    }
+
+    // Show hamburger
+    &__hamburger {
+      display: flex !important;
+    }
+
+    // Hide nav by default on mobile
+    &__nav {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+      background-color: rgba(0, 0, 0, 0.92);
+      padding: 2rem 1.5rem;
+      margin-top: 1rem;
+      border-radius: 1rem;
+
+      // Show nav when open
+      &--open {
+        display: flex;
+      }
+
+      li a {
+        font-size: 2rem;
+        color: white;
+      }
+    }
+  }
+}
