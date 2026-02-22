@@ -6,9 +6,9 @@
   margin-bottom: 12rem;
   padding: 0 4.8rem;
 
-  @include respond(tab-land) {
+  /* @include respond(tab-land) {
     padding: 0 2.5rem;
-  }
+  } */
 
   &__headline {
     margin-bottom: 8rem;
@@ -20,7 +20,7 @@
     column-gap: 6%;
     row-gap: 6rem;
 
-    @include respond(tab-land) {
+    /* @include respond(tab-land) {
       column-gap: 4rem;
       row-gap: 4rem;
     }
@@ -29,16 +29,16 @@
       flex-direction: column !important;
       gap: 3rem;
       width: 100%;
-    }
+    } */
   }
 
   &__item {
     &:nth-of-type(1) {
       width: 60.5%;
 
-      @include respond(phone) {
+     /*  @include respond(phone) {
         width: 100% !important;
-      }
+      } */
     }
 
     &:nth-of-type(2) {
