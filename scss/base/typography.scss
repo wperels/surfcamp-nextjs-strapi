@@ -39,3 +39,42 @@ h5 {
   font-size: 15px;
   padding-top: 1.5rem;
 }
+
+@include respond(small-phone) {
+  .copy-small {
+    font-size: 7.5px;
+    padding-top: 0.1rem; // reduce from 0.6rem
+  }
+
+  h1 {
+    font-size: 6rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+  }
+
+  h3 {
+    font-size: 3rem;
+  }
+
+  h4 {
+    font-size: 1.8rem;
+  }
+
+  h5 {
+    font-size: 1.6rem;
+  }
+
+  h6 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 1.4rem;
+  }
+
+  .copy {
+    font-size: 1.4rem;
+  }
+}

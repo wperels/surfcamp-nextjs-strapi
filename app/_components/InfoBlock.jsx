@@ -17,7 +17,7 @@ return (
 
 
     <div className="info__text">
-      <h2 className="info__headling">{headline}</h2>
+      <h2 className="info__headline">{headline}</h2>
       <div className="copy">
         <ReactMarkdown>{text}</ReactMarkdown>
         {/* Link element moved from createInfoBlockButton function in strapi.utils.js */}

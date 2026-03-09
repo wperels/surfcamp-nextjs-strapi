@@ -3,10 +3,12 @@
   color: white;
   padding: 6rem 4.8rem 4.5rem;
 
+
   &__logo {
     width: 8rem;
     filter: invert(99%) sepia(3%) saturate(825%) hue-rotate(200deg) brightness(118%) contrast(100%);
   }
+
 
   &__nav {
     display: flex;
@@ -16,26 +18,111 @@
     margin-bottom: 3.5rem;
   }
 
+
   &__links {
     display: flex;
     list-style: none;
+
 
     & li:not(:last-of-type) {
       margin-right: 6.3rem;
     }
   }
 
+
   &__policies {
     display: flex;
     justify-content: space-between;
   }
 
+
   &__policies-nav {
     display: flex;
     list-style: none;
 
+
     & li:not(:last-of-type) {
       margin-right: 3.5rem;
+    }
+  }
+
+  @include respond(tab-land) {
+    padding: 4rem 2.5rem 3rem;
+
+    &__logo {
+      width: 6.5rem;
+    }
+
+    &__nav {
+      padding-right: 4rem;
+      margin-bottom: 2.5rem;
+    }
+
+    &__links li:not(:last-of-type) {
+      margin-right: 4rem;
+    }
+
+    &__policies-nav li:not(:last-of-type) {
+      margin-right: 2.5rem;
+    }
+  }
+
+  @include respond(phone) {
+    padding: 3rem 1.5rem 2rem;
+    flex-direction: column;
+    text-align: center;
+
+    &__logo {
+      width: 5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &__nav {
+      padding-right: 0;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    &__links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    &__links li:not(:last-of-type) {
+      margin-right: 0;
+    }
+
+    &__policies {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    &__policies-nav {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    &__policies-nav li:not(:last-of-type) {
+      margin-right: 0;
+    }
+  }
+
+  @include respond(small-phone) {
+    padding: 2rem 1rem 1.5rem;
+
+    &__logo {
+      width: 4rem;
+    }
+
+    &__nav {
+      gap: 0.75rem;
+    }
+
+    &__links,
+    &__policies-nav {
+      gap: 0.75rem;
+      font-size: 0.875rem;
     }
   }
 }

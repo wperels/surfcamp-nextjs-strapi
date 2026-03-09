@@ -12,7 +12,7 @@ const ArticleOverview = ({ article }) => {
   return (
     <div className="article-overview">
       <div className="article-overview__info">
-        <h3 className="article-overview__headline">{article.headline}</h3>
+        <h3 className="article-overview__headline">In this blog</h3>
           <h5 className="article-overview__excerpt">{article.excerpt}</h5>
       </div>
       <ul className="article-overview__contents">
