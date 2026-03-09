@@ -22,9 +22,7 @@ export default async function Page({ params }) {
   if (!article) {
     return <main>Article not found for slug: {slug}</main>;
   }
-/*   const headlines = article.articleContent.filter(
-    (component) => component.__component === "blog-article.headline"
-  ) */
+
 
   return (
     <main>

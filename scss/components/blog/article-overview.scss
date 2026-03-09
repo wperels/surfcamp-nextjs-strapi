@@ -64,4 +64,15 @@
       margin-bottom: 1.5rem;
     }
   }
+
+  @include respond(small-phone) {
+    &__headline {
+      font-size: 2rem; // bump h3 up
+    }
+
+    &__excerpt {
+      font-size: 1.4rem; // bring h5 down
+    }
+  }
+
 }

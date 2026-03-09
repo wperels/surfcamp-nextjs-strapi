@@ -4,7 +4,11 @@
   padding: 3.8rem 2.1rem 3.8rem 4.8rem;
   border-radius: 3.35rem;
   margin-bottom: 10rem;
-  @include respond(phone) { flex-direction: column; }
+
+  @include respond(phone) {
+    flex-direction: column;
+  }
+
 
   &__info {
     & h4 {
@@ -12,12 +16,19 @@
     }
   }
 
+
   &__form {
     display: flex;
     align-items: center;
     margin-left: 3rem;
-    @include respond(phone) { margin-left: 0; margin-top: 2rem; width: 100%; }
+
+    @include respond(phone) {
+      margin-left: 0;
+      margin-top: 2rem;
+      width: 100%;
+    }
   }
+
 
   &__email {
     background-color: $light-beige;
@@ -25,19 +36,46 @@
     height: 6.4rem;
     border-radius: 1.8rem 0px 0px 1.8rem;
     padding-left: 2.1rem;
-    @include respond(phone) { flex: 1; min-width: 0; }
+
+    @include respond(phone) {
+      flex: 1;
+      min-width: 0;
+    }
   }
+
 
   &__subscribe {
     height: 6.4rem;
     width: 23rem;
     border-radius: 0px 1.8rem 1.8rem 0px;
-    @include respond(phone) { width: auto; white-space: nowrap; }
+
+    @include respond(phone) {
+      width: auto;
+      white-space: nowrap;
+      padding: 0 1.6rem;
+    }
+
+    @include respond(small-phone) {
+      font-size: 1.4rem;
+      height: 5.6rem;
+      padding: 0 1.2rem;
+    }
   }
+
+
+  &__email {
+    @include respond(small-phone) {
+      height: 5.6rem;
+      font-size: 1.4rem;
+      padding-left: 1.4rem;
+    }
+  }
+
 
   &__thanks {
     width: 100%;
     text-align: center;
   }
+
 
 }
