@@ -27,7 +27,7 @@ export default async function Page() {
       </p>
   </>
   )
-  const headline = "You want to stay tuned for our events?"
+  const headline = "Want to stay tuned for events?"
 
   return (
     <main className="events-page">
