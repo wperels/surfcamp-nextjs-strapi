@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 import {  generateSignupPayload } from "../../../utils/strapi.utils"; 
 
 
+
 const SignupForm = ({ headline, infoText, buttonLabel, pricing, eventId }) => {
  const [formData, setFormData] = useState({
   firstName: "",
@@ -15,10 +16,13 @@ const SignupForm = ({ headline, infoText, buttonLabel, pricing, eventId }) => {
   phone: "",
  });
 
+
    //console.log('SignupForm received eventId:', eventId);
+
 
    const [showConfirmation, setShowConfirmation] = useState(false)
   const [errorMessage, setErrorMessage] = useState(false)
+
 
  const onChange = (e) => {
     setFormData(prevState => ({
@@ -33,6 +37,7 @@ const SignupForm = ({ headline, infoText, buttonLabel, pricing, eventId }) => {
   console.log('eventId type:', typeof eventId);
   console.log('Is it documentId?:', eventId); */
 
+
  const onSubmit = async (e) => {
   e.preventDefault()
   
@@ -40,10 +45,11 @@ const SignupForm = ({ headline, infoText, buttonLabel, pricing, eventId }) => {
   
      let response; // Declare outside try block
 
+
     if (allDataFilledIn(formData)) {
       try {
             response = await axios.post(
-              `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/participants`,
+              `/api/strapi/participants`,
               payload
             );
             console.log(response);
@@ -56,7 +62,9 @@ const SignupForm = ({ headline, infoText, buttonLabel, pricing, eventId }) => {
           setErrorMessage("Please fill out all fields")
         }
 
+
  }
+
 
 return (
     <section className="signup-form">
@@ -115,5 +123,6 @@ return (
     </section>
   )
 }
+
 
 export default SignupForm

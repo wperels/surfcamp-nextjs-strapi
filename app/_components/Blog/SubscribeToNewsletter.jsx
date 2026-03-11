@@ -3,7 +3,9 @@ import { useState } from "react"
 import axios from "axios"
 
 
+
 const SubscribeToNewsletter = () => {
+
 
   const [email, setEmail] = useState("");
   const [hasSignedUp, setHasSignedUp] = useState(false);
@@ -12,12 +14,13 @@ const SubscribeToNewsletter = () => {
     setEmail(e.target.value)
   }
 
+
   const onSubmit = async (e) => {
       e.preventDefault()
     try{
       // Send email to Strapi
           if (email.length) {
-            await axios.post(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/newsletter-signups`, {
+            await axios.post(`/api/strapi/newsletter-signups`, {
               "data": {
                 email
               }
@@ -26,7 +29,7 @@ const SubscribeToNewsletter = () => {
           setHasSignedUp(true)
       } catch (err){
               console.log(err)
-              setShowErr(true)
+              setshowError(true)
           }
    };
    
@@ -69,5 +72,6 @@ const SubscribeToNewsletter = () => {
     </section>
   );
 }
+
 
 export default SubscribeToNewsletter
