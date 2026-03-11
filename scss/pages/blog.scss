@@ -9,6 +9,10 @@
   @include respond(phone) {
     padding: 10rem 1.5rem 6rem;
   }
+
+  @include respond(small-phone) {
+    padding: 8rem 1.2rem 4rem;
+  }
 }
 
 .article-section {
@@ -24,5 +28,10 @@
     padding: 0 1.5rem;
     margin-bottom: 6rem;
   }
-  
+
+  @include respond(small-phone) {
+    padding: 0 1.2rem;
+    margin-bottom: 2rem;
+  }
+
 }

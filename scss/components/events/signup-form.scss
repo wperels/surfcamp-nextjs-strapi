@@ -107,6 +107,23 @@
     }
   }
 
+  @include respond(small-phone) {
+    padding-top: 4rem; // was 9.6rem (96px)
+    margin-bottom: 2.5rem; // was 6rem base
+    gap: 1.5rem;
+
+    &__headline {
+      margin-bottom: 1.5rem;
+    }
+
+    &__name-container {
+      flex-direction: column;
+
+      & .input__container {
+        width: 100%;
+      }
+    }
+  }
 
   &__pricing {
     & h3 {
