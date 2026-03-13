@@ -16,9 +16,9 @@ export default async function Home() {
   //console.log(infoBlockData)
   const heroHeadline = (    
   <>
-    <h1>barrel.</h1>
+    <h1>discover.</h1>
     <h1>your.</h1>
-    <h1>happiness.</h1>
+    <h1>spirit.</h1>
     </>
     )
     
