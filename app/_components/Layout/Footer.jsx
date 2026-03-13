@@ -19,14 +19,14 @@ const Footer = () => {
   ]
 
   const policies = [
-    {
+    /* {
       display: "Imprint.", slug: "/"
+    }, */
+    {
+      display: "Tech Stack.", slug: "/techstack"
     },
     {
-      display: "Terms & Conditions.", slug: "/toc"
-    },
-    {
-      display: "Data Protection.", slug: "/data-protection"
+      display: "About The Developer.", slug: "/about"
     }
   ]
 
@@ -55,7 +55,7 @@ const Footer = () => {
   )
 )}
     </ul>
-      <p className="copy">© Sam’s Surfcamp - all rights reserved</p>
+      <p className="copy">© Wendy Perelstein - all rights reserved</p>
         </div>
   </footer>
   )
