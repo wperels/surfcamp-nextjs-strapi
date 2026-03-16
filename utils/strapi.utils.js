@@ -1,4 +1,3 @@
-import axios from 'axios';
 import qs from 'qs';
 
 const BASE_URL = process.env.STRAPI_URL || "http://127.0.0.1:1337";
@@ -7,30 +6,36 @@ const BASE_URL = process.env.STRAPI_URL || "http://127.0.0.1:1337";
 export function getStrapiMediaUrl(url) {
   if (!url) return null;
   
-  // If URL already starts with http/https, it's from Cloudinary - return as-is
   if (url.startsWith('http://') || url.startsWith('https://')) {
     return url;
   }
   
-  // Otherwise, it's a local upload - prepend BASE_URL
   return `${BASE_URL}${url}`;
 }
 
 export async function fetchDataFromStrapi(route) {
   const url = `${BASE_URL}/api/${route}`;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000);
 
   try {
     console.log(`Fetching from: ${url}`);
-    const response = await axios.get(url, {
-      timeout: 10000,
+    const response = await fetch(url, {
+      cache: 'no-store',
+      signal: controller.signal,
     });
-    return response.data.data;
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      console.error(`Status: ${response.status}`);
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const json = await response.json();
+    return json.data;
   } catch (err) {
     console.error(`Failed to fetch data from: ${url}`);
     console.error(`Error message: ${err.message}`);
-    if (err.response) {
-      console.error(`Status: ${err.response.status}`);
-    }
     throw new Error(`Failed to fetch data from: ${url}`);
   }
 }
@@ -118,12 +123,10 @@ export function extractImageUrl(imageData) {
 export function extractLandscapeImageUrl(imageData) {
   if (!imageData) return '';
   
-  // If imageData is already a string (URL path)
   if (typeof imageData === 'string') {
     return getStrapiMediaUrl(imageData);
   }
   
-  // If imageData is an object, extract the URL
   if (typeof imageData === 'object') {
     const url = imageData.url || imageData.image?.[0]?.url;
     return getStrapiMediaUrl(url);
@@ -133,12 +136,24 @@ export function extractLandscapeImageUrl(imageData) {
 }
 
 export async function fetchIndividualEvent(documentId) {
+  const url = `${BASE_URL}/api/events/${documentId}`;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000);
+
   try {
-    const response = await axios.get(`${BASE_URL}/api/events/${documentId}`)
-    return processEventData(response.data.data)
+    const response = await fetch(url, {
+      cache: 'no-store',
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+    const json = await response.json();
+    return processEventData(json.data);
   } catch (err) {
-    console.error(`Failed to fetch event ${documentId}:`, err.message)
-    throw err
+    console.error(`Failed to fetch event ${documentId}:`, err.message);
+    throw err;
   }
 }
 
@@ -209,7 +224,23 @@ function createEventQuery(eventIdToExclude) {
 
 export async function fetchAllEvents(eventIdToExclude = null) {
   const query = createEventQuery(eventIdToExclude);
+  const url = `${BASE_URL}/api/events?${query}`;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-  const response = await axios.get(`${BASE_URL}/api/events?${query}`);
-  return response.data.data.map((event) => processEventData(event));
+  try {
+    const response = await fetch(url, {
+      cache: 'no-store',
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+    const json = await response.json();
+    return json.data.map((event) => processEventData(event));
+  } catch (err) {
+    console.error(`Failed to fetch events:`, err.message);
+    throw err;
+  }
 }
