@@ -21,7 +21,7 @@ export async function fetchDataFromStrapi(route) {
   try {
     console.log(`Fetching from: ${url}`);
     const response = await fetch(url, {
-      cache: 'no-store',
+      next: { revalidate: 300 },
       signal: controller.signal,
     });
     clearTimeout(timeoutId);
@@ -142,7 +142,7 @@ export async function fetchIndividualEvent(documentId) {
 
   try {
     const response = await fetch(url, {
-      cache: 'no-store',
+      next: { revalidate: 300 },
       signal: controller.signal,
     });
     clearTimeout(timeoutId);
@@ -230,7 +230,7 @@ export async function fetchAllEvents(eventIdToExclude = null) {
 
   try {
     const response = await fetch(url, {
-      cache: 'no-store',
+      next: { revalidate: 300 },
       signal: controller.signal,
     });
     clearTimeout(timeoutId);
