@@ -1,5 +1,12 @@
 # Surfcamp Frontend Setup Notes
 
+## Coursera
+The Freelance Stack: Real project with NextJS and Strapi
+https://www.coursera.org/learn/packt-the-freelance-stack-real-project-with-nextjs-and-strapi-usllu/assignment-submission/W8ce6/full-course-practice-assessment
+
+## Figma
+https://www.figma.com/design/N27pbzZuIRUm68cjBKuFxv/Surf-Camp---Sharefile?node-id=1-990
+
 ## Strapi API Configuration
 
 ### Working Populate Query
