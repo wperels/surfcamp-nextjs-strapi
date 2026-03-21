@@ -64,9 +64,9 @@
   }
 
   @include respond(small-phone) {
-    padding: 16rem 1.2rem 0; // was 12rem
-    height: 55vh;
-    margin: 0 -1.5rem; // matches small-phone padding in base.scss
+    padding: 16rem 1rem 0;
+    height: 65vh;
+    margin: 0 -1rem; // ← was -1.5rem, now matches base.scss 1rem padding
 
     &__background {
       height: 55vh;
@@ -79,6 +79,7 @@
     &__headline {
       font-size: 2.8rem; // was 1.6rem
       margin-bottom: 0.2rem; // was 0.8rem
+      line-height: 1.0; // tighten at 360px
     }
   }
 }

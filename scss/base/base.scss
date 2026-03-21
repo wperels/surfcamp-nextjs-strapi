@@ -59,11 +59,16 @@ html {
   @include respond(big-desktop) {
     font-size: 75%; // 1 rem = 12px, 12/16 = 75%
   }
+
+  @include respond(small-phone) {
+    // ← ADD THIS
+    font-size: 43.75%; // 1rem = 7px, 7/16 = 43.75%
+  }
 }
 
 .bold {
   font-weight: bold;
-} 
+}
 
 /* Global responsive containers */
 .page-container,
@@ -78,5 +83,10 @@ main,
 
   @include respond(phone) {
     padding: 0 1.5rem;
+  }
+
+  @include respond(small-phone) {
+    // ← ADD THIS
+    padding: 0 1rem;
   }
 }
