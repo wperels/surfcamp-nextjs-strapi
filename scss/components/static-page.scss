@@ -21,7 +21,7 @@
   p,
   li,
   span {
-    font-size: 1.25rem; // only applies to text content, not headings
+    font-size: 1.25rem;
   }
 
   a {
@@ -32,8 +32,19 @@
     padding: 10rem 5rem 4rem;
 
     h1 {
-      font-size: 4rem;
+      font-size: 8rem; // 4rem × 2 (was 4rem on small-phone)
       margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 3rem; // 1.5rem × 2
+      margin: 2rem 0 0.5rem;
+    }
+
+    p,
+    li,
+    span {
+      font-size: 2.5rem; // 1.25rem × 2
     }
   }
 }
