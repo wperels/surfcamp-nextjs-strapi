@@ -112,4 +112,5 @@ FRONTEND_URL= https://wp-nextjs-strapi.vercel.app/
 - The frontend and backend are maintained in **separate GitHub repositories** and opened in **separate VS Code instances**.
 - Local and deployed Strapi instances use **different admin accounts** — see the sections above for each.
 - Media assets (images, uploads) are stored and served through **Cloudinary**.
-- The backend database on Render is a **paid tier** to prevent data loss (free tier databases are deleted after inactivity).
+- NOT(The backend database on Render is a **paid tier** to prevent data loss (free tier databases are deleted after inactivity).)
+- The backend database is hosted on Neon (serverless PostgreSQL free tier) — data is preserved without inactivity deletion, replacing the previous Render PostgreSQL paid tier ($7/month).
